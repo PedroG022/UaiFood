@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN set -eux; \
 	install-php-extensions \
+		pdo_mysql \
 		@composer \
 		apcu \
 		intl \
