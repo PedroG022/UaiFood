@@ -5,6 +5,9 @@ SYMFONY_SERVER=docker compose exec php bin/console
 # Default target: start the application
 all: up
 
+shell:
+	$(DOCKER_COMPOSE) exec -it php bash
+
 ## Build the Docker images (run after changes in Dockerfile)
 build:
 	$(DOCKER_COMPOSE) build --no-cache
