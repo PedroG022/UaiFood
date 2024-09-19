@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card shadow-lg" style="width: 100%; max-width: 500px; padding: 2rem; border-radius: 1rem;">
+            <div class="card-body">
+                <h1 class="h3 mb-3 text-center">Registro</h1>
+
+                {{ form_errors(registrationForm) }}
+
+                {{ form_start(registrationForm) }}
+
+                <div class="mb-3">
+                    {{ form_row(registrationForm.email, {
+                        attr: {class: 'form-control', style: 'border-radius: 0.25rem; padding: 0.75rem; border: 1px solid #ced4da;'},
+                        label_attr: {class: 'form-label'}
+                    }) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_row(registrationForm.plainPassword, {
+                        label: 'Senha',
+                        attr: {class: 'form-control', style: 'border-radius: 0.25rem; padding: 0.75rem; border: 1px solid #ced4da;'},
+                        label_attr: {class: 'form-label'}
+                    }) }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form_row(registrationForm.agreeTerms, {
+                        attr: {class: 'form-check-input'},
+                        label_attr: {class: 'form-check-label'}
+                    }) }}
+                </div>
+
+                <button type="submit" class="btn btn-lg btn-primary w-100" style="border-radius: 0.25rem;">Registrar</button>
+
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
