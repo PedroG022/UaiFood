@@ -11,6 +11,8 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
+        # Redireciona o usuário se ele não estiver logado
+
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_landing');
         }
