@@ -13,6 +13,13 @@
                 {{ form_start(registrationForm) }}
 
                 <div class="mb-3">
+                    {{ form_row(registrationForm.name, {
+                        attr: {class: 'form-control', style: 'border-radius: 0.25rem; padding: 0.75rem; border: 1px solid #ced4da;'},
+                        label_attr: {class: 'form-label'}
+                    }) }}
+                </div>
+
+                <div class="mb-3">
                     {{ form_row(registrationForm.email, {
                         attr: {class: 'form-control', style: 'border-radius: 0.25rem; padding: 0.75rem; border: 1px solid #ced4da;'},
                         label_attr: {class: 'form-label'}
