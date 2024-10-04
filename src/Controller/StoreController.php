@@ -36,7 +36,7 @@ final class StoreController extends AbstractController
             $entityManager->persist($store);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_store_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_store_show', ['id' => $store->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('store/new.html.twig', [
@@ -69,7 +69,7 @@ final class StoreController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_store_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_store_show', ['id' => $store->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('store/edit.html.twig', [
