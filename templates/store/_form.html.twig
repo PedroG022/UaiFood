@@ -1,0 +1,66 @@
+{{ form_start(form) }}
+
+<div class="mb-3">
+    {{ form_row(form.name, {
+        attr: {class: 'form-control', style: 'border-radius: 0.25rem; padding: 0.75rem; border: 1px solid #ced4da;'},
+        label_attr: {class: 'form-label'}
+    }) }}
+</div>
+
+<div class="mb-3">
+    {{ form_row(form.description, {
+        attr: {class: 'form-control', style: 'border-radius: 0.25rem; padding: 0.75rem; border: 1px solid #ced4da;'},
+        label_attr: {class: 'form-label'}
+    }) }}
+</div>
+
+<div class="mb-3">
+    {{ form_row(form.address, {
+        attr: {class: 'form-control', style: 'border-radius: 0.25rem; padding: 0.75rem; border: 1px solid #ced4da;'},
+        label_attr: {class: 'form-label'}
+    }) }}
+</div>
+
+<div class="mb-3">
+    {{ form_row(form.phone, {
+        attr: {class: 'form-control', style: 'border-radius: 0.25rem; padding: 0.75rem; border: 1px solid #ced4da;'},
+        label_attr: {class: 'form-label'}
+    }) }}
+</div>
+
+<div class="mb-3">
+    {{ form_row(form.email, {
+        attr: {class: 'form-control', style: 'border-radius: 0.25rem; padding: 0.75rem; border: 1px solid #ced4da;'},
+        label_attr: {class: 'form-label'}
+    }) }}
+</div>
+
+<div class="mb-3">
+    {{ form_row(form.cnpj, {
+        attr: {class: 'form-control', style: 'border-radius: 0.25rem; padding: 0.75rem; border: 1px solid #ced4da;'},
+        label_attr: {class: 'form-label'}
+    }) }}
+</div>
+
+<div class="mb-3">
+    {{ form_row(form.logoUrl, {
+        attr: {class: 'form-control', style: 'border-radius: 0.25rem; padding: 0.75rem; border: 1px solid #ced4da;'},
+        label_attr: {class: 'form-label'}
+    }) }}
+</div>
+
+<div class="mb-3">
+    {{ form_row(form.bannerUrl, {
+        attr: {class: 'form-control', style: 'border-radius: 0.25rem; padding: 0.75rem; border: 1px solid #ced4da;'},
+        label_attr: {class: 'form-label'}
+    }) }}
+</div>
+
+<button type="submit" class="btn btn-lg btn-primary w-100"
+        style="border-radius: 0.25rem;"><i class="bi bi-save"></i>{{ buttonLabel | default('Save') }}</button>
+
+{{ form_end(form) }}
+
+<a href="{{ path('app_store_index') }}" class="btn btn-warning btn-lg w-100 mt-2">
+    <i class="bi bi-arrow-left"></i> Cancel
+</a>

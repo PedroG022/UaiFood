@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ store.name }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Banner da Loja -->
+        <div class="position-relative mb-4">
+            {% if store.bannerUrl %}
+                <img src="{{ store.bannerUrl }}" alt="{{ store.name }} banner" class="img-fluid w-100" style="height: 300px; object-fit: cover;">
+            {% else %}
+                <div class="bg-secondary" style="height: 300px;"></div> <!-- Placeholder caso não haja banner -->
+            {% endif %}
+
+            <!-- Logo da Loja (posicionada sobre o banner) -->
+            <div class="position-absolute top-100 start-50 translate-middle" style="transform: translate(-50%, -50%);">
+                {% if store.logoUrl %}
+                    <img src="{{ store.logoUrl }}" alt="{{ store.name }} logo" class="rounded-circle" style="width: 150px; height: 150px; object-fit: cover; border: 5px solid white;">
+                {% else %}
+                    <div class="bg-light rounded-circle" style="width: 150px; height: 150px;"></div> <!-- Placeholder para logo -->
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Detalhes da Loja -->
+        <div class="text-center mb-4">
+            <h1>{{ store.name }}</h1>
+            <p class="lead text-muted">{{ store.description }}</p>
+            <p class="text-muted">
+                {{ store.address }}<br>
+                {{ store.phone }}<br>
+                {{ store.email }}
+            </p>
+        </div>
+
+        <!-- Botões de Ações -->
+        <div class="d-flex justify-content-between mt-5">
+            <a href="{{ path('app_store_index') }}" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Back to List
+            </a>
+            <div>
+                <a href="{{ path('app_store_edit', {'id': store.id}) }}" class="btn btn-lg w-100 btn-outline-warning me-2">
+                    <i class="bi bi-pencil-square"></i> Edit
+                </a>
+                {{ include('store/_delete_form.html.twig', { 'class': 'd-inline' }) }}
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+

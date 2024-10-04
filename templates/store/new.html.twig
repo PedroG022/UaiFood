@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cadastro de Loja{% endblock %}
+
+{% block body %}
+    <div class="mt-5 mb-5 container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card shadow-lg" style="width: 100%; max-width: 600px; padding: 2rem; border-radius: 1rem;">
+            <div class="card-body">
+                <h1 class="h3 mb-3 text-center">Cadastro de Loja</h1>
+
+                {{ include('store/_form.html.twig', {'button_label': 'Save'}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
