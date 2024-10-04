@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Store;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -16,19 +17,34 @@ class AppFixtures extends Fixture
         $this->userPasswordHasher = $userPasswordHasher;
     }
 
-    public function load(ObjectManager $manager, ): void
+    public function load(ObjectManager $manager,): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
-
         $user = new User();
 
         $user->setName('Admin');
         $user->setEmail('admin@uaifood.com');
         $user->setPassword($this->userPasswordHasher->hashPassword($user, 'admin'));
-        $user->setRoles(['ROLE_USER']);
+        $user->setRoles(['ROLE_USER', 'ROLE_ADMIN', 'ROLE_STORE_MANAGER']);
 
         $manager->persist($user);
+
+        for ($i = 0; $i < 6; $i++) {
+            $store = new Store();
+
+            $store->setName('Loja ' . $i);
+            $store->setDescription('Essa é a loja ' . $i . '.');
+            $store->setCnpj('00.000.000/0000-00');
+            $store->setPhone('(00) 0000-0000');
+            $store->setEmail('loja' . $i . '@uaifood.com');
+            $store->setAddress('Rua A, 00' . $i . ' - Centro - Januária/MG');
+
+            $store->setManager($user);
+            $store->setLogoUrl('https://photographylife.com/wp-content/uploads/2023/05/Nikon-Z8-Official-Samples-00002.jpg');
+            $store->setBannerUrl('https://photographylife.com/wp-content/uploads/2023/05/Nikon-Z8-Official-Samples-00002.jpg');
+
+            $manager->persist($store);
+        }
+
         $manager->flush();
     }
 }
