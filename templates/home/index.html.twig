@@ -19,6 +19,11 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ store.name }}</h5>
                                 <p class="card-text">{{ store.description }}</p>
+                                {% if store.manager == app.user %}
+                                    <i class="bi-person">
+                                        Minha loja
+                                    </i>
+                                {% endif %}
                             </div>
                         </a>
                     </div>
