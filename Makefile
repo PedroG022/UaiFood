@@ -38,4 +38,11 @@ cache-clear:
 
 ## Load initial fixtures to database
 db-fixtures:
-	$(SYMFONY_SERVER) doctrine:fixtures:load
+	$(SYMFONY_SERVER) doctrine:fixtures:load --no-interaction
+
+migration:
+	$(SYMFONY_SERVER) doctrine:database:drop --force
+	$(SYMFONY_SERVER) doctrine:database:create
+	$(SYMFONY_SERVER) doctrine:migrations:migrate --no-interaction
+
+	make db-fixtures
