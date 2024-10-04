@@ -28,6 +28,15 @@ class AppFixtures extends Fixture
 
         $manager->persist($user);
 
+        $user2 = new User();
+
+        $user2->setName('User');
+        $user2->setEmail('user1@uaifood.com');
+        $user2->setPassword($this->userPasswordHasher->hashPassword($user, 'user'));
+        $user2->setRoles(['ROLE_USER']);
+
+        $manager->persist($user2);
+
         for ($i = 0; $i < 6; $i++) {
             $store = new Store();
 
