@@ -31,10 +31,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                {% if app.user %}
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Home</a>
-                    </li>
+                {% if app.user and is_granted('ROLE_STORE_MANAGER') %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_store_index') }}">Minhas Lojas</a>
                     </li>
@@ -70,9 +67,13 @@
                 <div class="modal-body text-center py-4">
                     <p class="lead mb-4">Você quer se registrar como:</p>
                     <div class="d-flex justify-content-around">
-                        <a href="{{ path('app_register') }}" class="btn btn-outline-secondary btn-lg mx-2 px-4"><i class="bi bi-person pr-1">Cliente</i></a>
+                        <a href="{{ path('app_register', {mode: 'client'}) }}"
+                           class="btn btn-outline-secondary btn-lg mx-2 px-4"><i
+                                class="bi bi-person pr-1">Cliente</i></a>
 
-                        <a href="{{ path('app_register') }}" class="btn btn-outline-secondary btn-lg mx-2 px-4"><i class="bi bi-briefcase pr-1"> Gerente</i></a>
+                        <a href="{{ path('app_register', {mode: 'manager'}) }}"
+                           class="btn btn-outline-secondary btn-lg mx-2 px-4"><i class="bi bi-briefcase pr-1">
+                                Gerente</i></a>
                     </div>
                 </div>
             </div>
