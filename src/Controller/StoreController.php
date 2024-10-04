@@ -48,14 +48,21 @@ final class StoreController extends AbstractController
     #[Route('/{id}', name: 'app_store_show', methods: ['GET'])]
     public function show(Store $store): Response
     {
+        $isManager = $store->getManager() === $this->getUser();
+
         return $this->render('store/show.html.twig', [
             'store' => $store,
+            'isManager' => $isManager,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_store_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Store $store, EntityManagerInterface $entityManager): Response
     {
+        if ($store->getManager() !== $this->getUser()) {
+            return $this->redirectToRoute('app_access_denied');
+        }
+
         $form = $this->createForm(StoreType::class, $store);
         $form->handleRequest($request);
 
@@ -74,6 +81,10 @@ final class StoreController extends AbstractController
     #[Route('/{id}', name: 'app_store_delete', methods: ['POST'])]
     public function delete(Request $request, Store $store, EntityManagerInterface $entityManager): Response
     {
+        if ($store->getManager() !== $this->getUser()) {
+            return $this->redirectToRoute('app_access_denied');
+        }
+
         if ($this->isCsrfTokenValid('delete'.$store->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($store);
             $entityManager->flush();
